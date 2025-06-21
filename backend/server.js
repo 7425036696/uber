@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const dotenv = require("dotenv");
 const cors  = require("cors");
+const cookieParser = require("cookie-parser");
 const connectDB = require('./db/db.js'); // adjust path
 connectDB();
 dotenv.config();
@@ -11,6 +12,7 @@ const port = process.env.PORT;
 app.use(cors()); 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json()); // 👈 VERY IMPORTANT!
+app.use(cookieParser());
 
 // ✅ Routes
 const userRoutes = require("./routes/userRoutes.js");
